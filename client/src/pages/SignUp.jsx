@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link,useNavigate} from "react-router-dom";
 import Oauth from "../components/Oauth";
+import Header from "../components/Header";
 
 const SignUp = () => {
   const [formDate, setFormData] = useState({});
@@ -39,6 +40,8 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <Header/>
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">sign up</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -77,6 +80,7 @@ const SignUp = () => {
       </div>
       <p className="text-red-700 mt-5">{error && 'Something went wrong'}</p>
     </div>
+    </>
   );
 };
 

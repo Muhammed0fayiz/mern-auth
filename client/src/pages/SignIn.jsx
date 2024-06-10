@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import Oauth from "../components/Oauth";
+import Header from "../components/Header";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -40,6 +41,7 @@ const SignIn = () => {
   };
 
   return (
+    <><Header/>
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -71,6 +73,7 @@ const SignIn = () => {
       </div>
       <p className="text-red-700 mt-5">{error? error||'Something went wrong':''}</p>
     </div>
+    </>
   );
 };
 
