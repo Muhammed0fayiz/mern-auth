@@ -36,10 +36,14 @@ const AdminDashboard = () => {
       console.error(error);
     }
   };
-
+//search
   const filteredUsers = userdata.filter(user =>
     user.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const adduser=()=>{
+    navigate(`/adduser`);
+  }
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -58,6 +62,9 @@ const AdminDashboard = () => {
           value={searchQuery} 
           onChange={(e) => setSearchQuery(e.target.value)} 
         />
+<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " style={{ marginLeft: '55rem' }} onClick={adduser}>Add user</button>
+
+
         <table className="w-full">
           <thead>
             <tr className="bg-gray-200">

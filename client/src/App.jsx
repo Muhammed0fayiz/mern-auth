@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import About from "./pages/About";0
 import UserView from "./pages/UserView";
+import AddUser from "./pages/AddUser";
 
 import PrivateRoute from "./components/PrivateRouts";
 import Adminlogin from "./pages/Adminlogin";
@@ -26,6 +27,7 @@ function App() {
 
         <Route path="/admin-login" element={<Adminlogin />}></Route>
         <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
+        <Route path="/adduser" element={<AddUser/>}></Route>
         <Route path="/viewmore/:userId" element={<UserView />} />
       </Routes>
     </BrowserRouter>
