@@ -193,15 +193,16 @@ export default function Profile() {
           </button>
         </form>
         <div className='flex justify-between mt-5'>
-          <span
+          {/* <span
             onClick={handleDeleteAccount}
             className='text-red-700 cursor-pointer'
           >
             Delete Account
-          </span>
-          <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
-            Sign out
-          </span>
+          </span> */}
+         <span onClick={handleSignOut} className='text-red-700 cursor-pointer' style={{ marginLeft: '26rem' }}>
+    Sign out
+</span>
+
         </div>
         {validationError && <p className='text-red-700 mt-5'>{validationError}</p>}
         {error && <p className='text-red-700 mt-5'>Something went wrong!</p>}

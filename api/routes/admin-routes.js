@@ -1,5 +1,5 @@
 import express from 'express';
-import { adminLogin, dashboard, viewmore, deleteUser, updateUser,addUser } from '../controllers/admin-controller.js';
+import { adminLogin, dashboard, viewmore, deleteUser, updateUser,addUser,logout} from '../controllers/admin-controller.js';
 
 const router = express.Router();
 
@@ -10,5 +10,6 @@ router.delete('/delete/:id', deleteUser);
 router.put('/update/:id', updateUser);
 
 router.post('/adduser',addUser)
+router.post('/signout',logout);
 
 export default router;

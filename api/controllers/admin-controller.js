@@ -1,5 +1,6 @@
 import User from '../models/user.model.js';
 import bcryptjs from 'bcryptjs';
+import { errorHandler } from '../utils/error.js';
 
 
 export const adminLogin = (req, res, next) => {
@@ -80,3 +81,7 @@ export const addUser = async (req, res, next) => {
     next(error);
   }
 };
+
+export const logout=(req,res)=>{
+  res.status(200).json('Signout success!')
+}

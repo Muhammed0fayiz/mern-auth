@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { signOutSuccess } from '../redux/admin/adminSlice';
 
 const AdminDashboard = () => {
   const [userdata, setUserData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getUsers();
@@ -36,23 +39,37 @@ const AdminDashboard = () => {
       console.error(error);
     }
   };
-//search
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/admin/logout', { method: 'POST' });
+      dispatch(signOutSuccess());
+      navigate('/admin-login');
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
+
   const filteredUsers = userdata.filter(user =>
     user.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const adduser=()=>{
+  const addUser = () => {
     navigate(`/adduser`);
-  }
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen">
-      <nav className="bg-gray-800 text-white p-4">
-        <div className="container mx-auto">
-          <div className="flex justify-center items-center">
-            <h1 className="text-xl font-semibold text-yellow-500 hover:text-red-500 transition-colors duration-300">Admin Dashboard</h1>
-          </div>
+      <nav className="bg-gray-800 text-white p-4 relative">
+        <div className="container mx-auto flex justify-center items-center">
+          <h1 className="text-xl font-semibold text-yellow-500 hover:text-red-500 transition-colors duration-300">Admin Dashboard</h1>
         </div>
+        <button 
+          className="absolute right-4 top-4 text-red-500 py-2 px-4 rounded hover:text-yellow-500" 
+          onClick={handleLogout}
+        >
+          Log Out
+        </button>
       </nav>
       <div className="container mx-auto px-4 py-8">
         <input 
@@ -62,10 +79,8 @@ const AdminDashboard = () => {
           value={searchQuery} 
           onChange={(e) => setSearchQuery(e.target.value)} 
         />
-<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " style={{ marginLeft: '55rem' }} onClick={adduser}>Add user</button>
-
-
-        <table className="w-full">
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style={{ marginLeft: '58rem' }} onClick={addUser}>Add User</button>
+        <table className="w-full mt-4">
           <thead>
             <tr className="bg-gray-200">
               <th className="text-left py-2 px-4">Username</th>
